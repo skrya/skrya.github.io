@@ -1,18 +1,18 @@
 # Site settings
-title:       Viraj Prabhu
-email:       virajp@gatech.edu
-author:      Viraj Prabhu
-description: "Viraj Prabhu's resume website."
+title:       Sudhir Yarram
+email:       sudhirya@buffalo.edu
+author:      Sudhir Yarram
+description: "Sudhir Yarram's resume website."
 baseurl:     ""
-url:         "http://virajprabhu.github.io"
+url:         "http://skrya.github.io"
 date_format: "%b %-d, %Y"
 
 # Google services
 google_verification:
 # Use either direct GA implementation or set up GTM account
 # - using both will skew your data (leave blank to not use at all)
-google_analytics: "UA-72205921-1"
-google_tag_manager:
+#google_analytics: "UA-72205921-1"
+#google_tag_manager:
 # Bing services
 bing_verification:
 
@@ -42,14 +42,14 @@ facebook_appid:
 facebook_comments_number: 10
 
 # Social icons
-github_username: virajprabhu
+github_username: skrya
 bitbucket_username:
 stackoverflow_id:
-twitter_username: virprabh
+twitter_username: rt_sudhir
 skype_username:
 steam_nickname:
 google_plus_id:
-linkedin_username: viraj-prabhu-0a2a9435
+linkedin_username: sudhir-yarram-90189b92
 angellist_username:
 medium_id:
 bitcoin_url:
