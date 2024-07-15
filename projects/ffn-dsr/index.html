@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="description"
         content="Forecasting Future Videos from Novel Views via Disentangled 3D Scene Representation.">
-  <meta name="keywords" content="foecasting, future, novel view synthesis">
+  <meta name="keywords" content="forecasting, future, novel view synthesis">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Forecasting Future Videos from Novel Views via Disentangled 3D Scene Representation</title>
 
@@ -88,12 +88,12 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Nerfies: Deformable Neural Radiance Fields</h1>
+          <h1 class="title is-1 publication-title">Forecasting Future Videos from Novel Views via Disentangled 3D Scene Representation</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://skrya.github.io/">Sudhir Yarram</a><sup>1</sup>,</span>
-            <span class="author-block">
-              Junsong Yuan<sup>2</sup>,</span>
+            <span class="author-block"> <a href="https://cse.buffalo.edu/~jsyuan/">
+              Junsong Yuan</a><sup>2</sup>,</span>
           </div>
 
           <div class="is-size-5 publication-authors">
@@ -103,7 +103,7 @@
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://arxiv.org/pdf/2011.12948"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -111,9 +111,9 @@
                   </span>
                   <span>Paper</span>
                 </a>
-              </span>
+              </span> -->
               <span class="link-block">
-                <a href="https://arxiv.org/abs/2011.12948"
+                <a href="https://arxiv.org/"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -122,7 +122,7 @@
                 </a>
               </span>
               <!-- Video Link. -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -130,7 +130,7 @@
                   </span>
                   <span>Video</span>
                 </a>
-              </span>
+              </span> -->
               <!-- Code Link. -->
               <!-- <span class="link-block">
                 <a href="https://github.com/google/nerfies"
@@ -162,15 +162,22 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
+      <!-- <video id="teaser" autoplay muted loop playsinline height="100%">
         <source src="./static/videos/teaser.mp4"
                 type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
+      </video> -->
+      <div class="column is-3 has-text-centered">
+        <img src="./static/pdfs/CVPR24_fig1.pdf"
+             class="interpolation-image"
+             alt="Interpolate start reference image."/>
+        <p>Comparisons of video extrapolation in space and time (VEST) ap-
+          proaches.</p>
+      </div>
+      <!-- <h2 class="subtitle has-text-centered">
         <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
         free-viewpoint
         portraits.
-      </h2>
+      </h2> -->
     </div>
   </div>
 </section>
@@ -253,13 +260,17 @@
 
     <!-- Paper video. -->
     <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
+      <!-- <div class="column is-four-fifths">
         <h2 class="title is-3">Video</h2>
         <div class="publication-video">
           <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
                   frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
-      </div>
+      </div> -->
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/ECCV_9842_v2_compressed.mp4"
+                type="video/mp4">
+      </video> 
     </div>
     <!--/ Paper video. -->
   </div>
@@ -269,9 +280,9 @@
 <section class="section">
   <div class="container is-max-desktop">
 
-    <div class="columns is-centered">
+    <!-- <div class="columns is-centered"> -->
 
-      <!-- Visual Effects. -->
+      <!-- Visual Effects.
       <div class="column">
         <div class="content">
           <h2 class="title is-3">Visual Effects</h2>
@@ -284,11 +295,11 @@
                     type="video/mp4">
           </video>
         </div>
-      </div>
+      </div> -->
       <!--/ Visual Effects. -->
 
       <!-- Matting. -->
-      <div class="column">
+      <!-- <div class="column">
         <h2 class="title is-3">Matting</h2>
         <div class="columns is-centered">
           <div class="column content">
@@ -303,14 +314,14 @@
           </div>
 
         </div>
-      </div>
-    </div>
+      </div> -->
+    <!-- </div> -->
     <!--/ Matting. -->
 
     <!-- Animation. -->
-    <div class="columns is-centered">
+    <!-- <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Animation</h2>
+        <h2 class="title is-3">Animation</h2> -->
 
         <!-- Interpolating. -->
         <!-- <h3 class="title is-4">Interpolating states</h3>
@@ -367,8 +378,8 @@
         </div> -->
         <!--/ Re-rendering. -->
 
-      </div>
-    </div>
+      <!-- </div>
+    </div> -->
     <!--/ Animation. -->
 
 
@@ -396,7 +407,7 @@
           </p>
         </div>
       </div> -->
-    </div>
+    <!-- </div> -->
     <!--/ Concurrent Work. -->
 
   </div>
