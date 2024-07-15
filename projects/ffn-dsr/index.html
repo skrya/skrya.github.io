@@ -39,6 +39,7 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 
@@ -278,6 +279,37 @@
              alt="Interpolate start reference image."
              style="height: 100%; width: 100%; object-fit: cover;"/>
         </div>
+        <div class="content has-text-justified">
+          Our framework aims to forecast a 3D scene into the future and view it from novel viewpoints. It comprises three primary steps:
+        </div>
+        
+        <div class="content has-text-justified bold">
+          1. Constructing 3D point clouds:
+        </div>
+        
+        <div class="content has-text-justified">
+          Starting with two past frames as the input, we construct per-frame 3D point clouds.
+          <br> 
+          (i) The process for each frame involves depth estimation, dis-occlusion handling via inpainting, and feature extraction to finally generate what we refer to as feature layer.
+          <br> 
+          (ii) The point-wise features in this feature layer are then lifted into 3D space using corresponding depth values, generating 3D point clouds. This process is performed on both \( \mathbf{I}_{(t-1)} \) and \( \mathbf{I}_{(t)} \) to obtain feature layers \( \mathcal{F}_{(t-1)} \) and \( \mathcal{F}_{(t)} \) and point clouds \( \mathcal{P}_{(t-1)} \) and \( \mathcal{P}_{(t)} \).
+        </div>
+        
+        <div class="content has-text-justified bold">
+          2. Forecasting future 3D motion:
+        </div>
+        
+        <div class="content has-text-justified">
+          We leverage the feature layers \( \mathcal{F}_{(t-1)} \) and \( \mathcal{F}_{(t)} \) to forecast future 3D motion for each of the point clouds. This forecasted 3D motion allows us to update the positions of point clouds \( \mathcal{P}_{(t-1)} \) and \( \mathcal{P}_{(t)} \) to their new, forecasted locations.
+        </div>
+        
+        <div class="content has-text-justified bold">
+          3. Splatting and Rendering:
+        </div>
+        
+        <div class="content has-text-justified">
+          A point-based renderer processes these motion-adjusted point clouds through 3D-to-2D splatting to generate feature maps. Finally, a refinement network takes these rendered feature maps and decodes them to synthesize a novel view \( \hat{I}'_{(t+1)} \) based on the target viewpoint.
+        </div>
       </div>
     </div>
     <!--/ Abstract. -->
@@ -300,7 +332,8 @@
              class="interpolation-image"
              alt="Interpolate start reference image."
              style="height: 100%; width: 100%; object-fit: cover;"/>
-        <p>Method Overview.</p>
+             
+        
       </div>
     </div>
   </div>
