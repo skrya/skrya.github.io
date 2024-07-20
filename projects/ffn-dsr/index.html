@@ -322,7 +322,7 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Method</h2>
         <div class="content has-text-justified">
-          <img src="./static/images/final_cvpr_fig2.png"
+          <img src="./static/images/final_cvpr_fig3.png"
                class="interpolation-image"
                alt="Interpolate start reference image."
                style="height: 100%; width: 100%; object-fit: cover;"/>
@@ -346,7 +346,7 @@
           <br>
           (3) Extract features from both original and inpainted frames to produce \( \mathcal{F}_{(t)} \) and \( \mathcal{F}^{\overline{\text{BG}}}_{(t)} \).
           <br>
-          (4) Create 3D point cloud \( \mathcal{P} \) by unprojecting the 2D features \( \mathcal{F}_{(t)} \) and \( \mathcal{F}^{\overline{\text{BG}}}_{(t)} \) into 3D, using depth maps \( \mathbf{D} \) and \( \mathbf{D}^{\overline{\text{BG}}} \), respectively. For simplicity, we refer to the set \( \{\mathcal{F}_{(t)}, \mathbf{D}, \mathbf{M}\} \) as \textit{original feature layer}, denoted by \( \mathcal{F} \), and the set \( \{\mathcal{F}^{\overline{\text{BG}}}_{(t)}, \mathbf{D}^{\overline{\text{BG}}}, \mathbf{M}\} \) as \textit{inpainted feature layer} \( \mathcal{F}^{\overline{\text{BG}}} \).
+          (4) Create 3D point cloud \( \mathcal{P} \) by unprojecting the 2D features \( \mathbf{F} \) and \( \mathbf{F}^{\overline{\text{BG}}} \) into 3D, using depth maps \( \mathbf{D} \) and \( \mathbf{D}^{\overline{\text{BG}}} \), respectively. For simplicity, we refer to the set \( \{\mathbf{F}, \mathbf{D}, \mathbf{M}\} \) as \textit{original feature layer}, denoted by \( \mathcal{F} \), and the set \( \{\mathbf{F}^{\overline{\text{BG}}}, \mathbf{D}^{\overline{\text{BG}}}, \mathbf{M}\} \) as \textit{inpainted feature layer} \( \mathcal{F}^{\overline{\text{BG}}} \).
         </div>
     
         <div class="content has-text-justified bold">
