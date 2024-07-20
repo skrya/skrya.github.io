@@ -32,7 +32,7 @@
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.svg">
+  <link rel="icon" href="./static/images/favicon.ico">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
@@ -98,9 +98,12 @@
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>University at Buffalo,</span>
+            <span class="author-block"><sup>1</sup>University at Buffalo</span>
           </div>
-
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><strong>European Conference on Computer Vision (ECCV) 2024</strong></span>
+          </div>
+          
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
@@ -163,7 +166,7 @@
   <div class="container is-max-desktop" style="height: 100%; width: 100%;">
     <div class="hero-body" style="height: 100%; width: 100%; display: flex; justify-content: center; align-items: center;">
       <div class="column is-3 has-text-centered" style="height: 100%; width: 100%;">
-        <img src="./static/videos/final_cvpr_fig1.png"
+        <img src="./static/images/final_cvpr_fig1.png"
              class="interpolation-image"
              alt="Interpolate start reference image."
              style="height: 100%; width: 100%; object-fit: cover;"/>
@@ -275,7 +278,7 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Method</h2>
         <div class="content has-text-justified">
-          <img src="./static/videos/final_cvpr_fig2.png"
+          <img src="./static/images/final_cvpr_fig2.png"
              class="interpolation-image"
              alt="Interpolate start reference image."
              style="height: 100%; width: 100%; object-fit: cover;"/>
@@ -285,7 +288,7 @@
         </div>
         
         <div class="content has-text-justified bold">
-          1. Constructing 3D point clouds:
+          <strong>1. Constructing 3D point clouds:</strong>
         </div>
         
         <div class="content has-text-justified">
@@ -297,22 +300,16 @@
         </div>
         
         <div class="content has-text-justified bold">
-          2. Forecasting future 3D motion:
+          <strong>2. Forecasting future 3D motion: </strong>
         </div>
         
         <div class="content has-text-justified">
           We leverage the feature layers \( \mathcal{F}_{(t-1)} \) and \( \mathcal{F}_{(t)} \) to forecast future 3D motion for each of the point clouds. This forecasted 3D motion allows us to update the positions of point clouds \( \mathcal{P}_{(t-1)} \) and \( \mathcal{P}_{(t)} \) to their new, forecasted locations.
         </div>
-        <div class="content has-text-justified">
-          <img src="./static/videos/final_cvpr_fig3.png"
-             class="interpolation-image"
-             alt="Interpolate start reference image."
-             style="height: 100%; width: 100%; object-fit: cover;"/>
-        </div>
 
         
         <div class="content has-text-justified bold">
-          3. Splatting and Rendering:
+          <strong>3. Splatting and Rendering: </strong>
         </div>
         
         <div class="content has-text-justified">
@@ -321,6 +318,56 @@
       </div>
     </div>
     
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Details on Constructing 3D point clouds and 3D Motion Forecasting </h2>
+        <div class="content has-text-justified">
+          <img src="./static/images/final_cvpr_fig2.png"
+             class="interpolation-image"
+             alt="Interpolate start reference image."
+             style="height: 100%; width: 100%; object-fit: cover;"/>
+        </div>
+        <div class="content has-text-justified">
+          <strong>(a) Constructing 3D point cloud.</strong>
+          <br>
+          (1) Estimate the depth map <b>D</b> from the input image <b>I</b>.
+          <br>
+          (2) Address “holes” in future frames caused by dis-occlusions from dynamic object motion:
+          <br>
+          (i) Segment dynamic category (foreground) objects to produce a binary mask <b>M</b>, identifying potential regions for “holes”.
+          <br>
+          (ii) Mask these foreground regions in both input image and depth map, then inpaint them using the background context.
+          <br>
+          (3) Extract features from both original and inpainted frames to produce <b>F</b> and <b>F<sup>BG</sup></b>.
+          <br>
+          (4) Create 3D point cloud <b>P</b> by unprojecting the 2D features <b>F</b>, <b>F<sup>BG</sup></b> into 3D, using depth maps <b>D</b>, <b>D<sup>BG</sup></b>, respectively.
+          <br>
+          For simplicity, we refer to the set {<b>F</b>, <b>D</b>, <b>M</b>} as <i>original feature layer</i>, denoted by <b>F</b> and the set of {<b>F<sup>BG</sup></b>, <b>D<sup>BG</sup></b>, <b>M</b>} as <i>inpainted feature layer</i> <b>F<sup>BG</sup></b>.
+        </div>
+        <div class="content has-text-justified">
+          <strong>(b) Forecasting future 3D motion.</strong>
+          <br>
+          Given feature layers from past frames, our method forecasts future 3D motion flow in two stages:
+          <br>
+          (1) Ego-motion forecasting using the EMF module, which processes the background (static category) across frames using inpainted feature layers <b>F<sup>BG</sup><sub>(t-1)</sub></b> and <b>F<sup>BG</sup><sub>(t)</sub></b>, yielding two relative ego-pose transformations, <b>T<sub>(t-1)→(t+1)</sub></b> and <b>T<sub>(t)→(t+1)</sub></b>. These transformations lead to initial 3D motion flows <b>u<sup>0</sup><sub>(t-1)→(t+1)</sub></b> and <b>u<sup>0</sup><sub>(t)→(t+1)</sub></b>, referred to as <b>U<sup>0</sup><sub>(t+1)</sub></b>.
+          <br>
+          (2) The OMF module then refines the initial 3D motion flow <b>U<sup>0</sup><sub>(t+1)</sub></b> by accounting for foreground object motion, using original and inpainted feature layers to derive the final forecasted 3D motion flow, <b>U<sup>L</sup><sub>(t+1)</sub></b>, after <b>L</b> MMFB blocks.
+        </div>
+        <div class="content has-text-justified">
+          <strong>(c) Multi-scale motion flow block (MMFB).</strong>
+          <br>
+          We illustrate the design of a MMFB block here.
+        </div>
+      </div>
+    </div>
+        
+
+        
+
+
+        
+
+     
     <!--/ Abstract. -->
 
     <!-- Paper video. -->
@@ -335,22 +382,61 @@
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Results</h2>
+        <h2 class="title is-3">Qualitative Comparison on KITTI and Cityscapes</h2>
         <div class="content has-text-justified">
-          <video id="teaser" autoplay muted loop playsinline height="100%">
-            <source src="./static/videos/ECCV_9842_v2_compressed.mp4"
-                    type="video/mp4">
-          </video> 
+          <figure>
+            <video id="teaser" autoplay muted loop playsinline height="100%">
+              <source src="./static/videos/ECCV_9842_KITTI.mp4" type="video/mp4">
+            </video>
+            <figcaption>Comparison on KITTI dataset</figcaption>
+          </figure>
+        </div>
+        
+        <div class="content has-text-justified">
+          <figure>
+            <video id="teaser" autoplay muted loop playsinline height="100%">
+              <source src="./static/videos/ECCV_Cityscapes.mp4" type="video/mp4">
+            </video>
+            <figcaption>Comparison on Cityscapes dataset</figcaption>
+          </figure> 
         </div>
         
       </div>
     </div>
     
-    <!--/ Abstract. -->
+  </div>
+</section>
 
-    <!-- Paper video. -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Quantitative Comparison on KITTI and Cityscapes</h2>
+        <div class="content has-text-justified">
+          <div class="content has-text-justified">
+            <figure>
+              <img src="./static/images/video_prediction_results.png"
+                class="interpolation-image"
+                alt="Interpolate start reference image."
+                style="height: 100%; width: 100%; object-fit: cover;"/>
+              <figcaption>Video Prediction Results on KITTI and Cityscapes</figcaption>
+          </figure>
+        </div>
+        
+        <div class="content has-text-justified">
+          <figure>
+            <img src="./static/images/qual_NVS_results.png"
+              class="interpolation-image"
+              alt="Interpolate start reference image."
+              style="height: 100%; width: 100%; object-fit: cover;"/>
+            <figcaption>Comparison Results of Novel View Synthesis</figcaption>
+        </figure> 
+        </div>
+        
+      </div>
+    </div>
     
-    <!--/ Paper video. -->
   </div>
 </section>
 
