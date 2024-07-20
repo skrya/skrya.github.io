@@ -322,37 +322,55 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Method</h2>
         <div class="content has-text-justified">
-          <img src="./static/images/final_cvpr_fig3.png"
+          <img src="./static/images/final_cvpr_fig2.png"
                class="interpolation-image"
                alt="Interpolate start reference image."
                style="height: 100%; width: 100%; object-fit: cover;"/>
         </div>
         <div class="content has-text-justified">
-          \textbf{(a) Constructing 3D point cloud.} 
-          (1) Estimate the depth map $\mathbf{D}$ from the input image $\mathbf{I}$. 
-          (2) Address "holes" in future frames caused by dis-occlusions from dynamic object motion: 
-          (i) segment dynamic category (foreground) objects to produce a binary mask $\mathbf{M}$, identifying potential regions for "holes". 
-          (ii) mask these foreground regions in both input image and depth map, then inpaint them using the background context. 
-          (3) Extract features from both original and inpainted frames to produce $\mathbf{F}$ and $\mathbf{F}^{\overline{\text{BG}}}$. 
-          (4) Create 3D point cloud $\mathcal{P}$ by unprojecting the 2D features $\mathbf{F}$, $\mathbf{F}^{\overline{\text{BG}}}$ into 3D, using depth maps $\mathbf{D}$, $\mathbf{D}^{\overline{\text{BG}}}$, respectively. 
-          For simplicity, we refer to the set $\{\mathbf{F}, \mathbf{D}, \mathbf{M}\}$ as \textit{original feature layer}, denoted by $\mathcal{F}$ and the set of $\{\mathbf{F}^{\overline{\text{BG}}}, \mathbf{D}^{\overline{\text{BG}}}, \mathbf{M}\}$ as \textit{inpainted feature layer} $\mathcal{F}^{\overline{\text{BG}}}$. 
+          Our framework aims to forecast a 3D scene into the future and view it from novel viewpoints. It comprises three primary steps:
         </div>
+    
         <div class="content has-text-justified bold">
-          <strong>(b) Forecasting future 3D motion.</strong> 
+          <strong>1. Constructing 3D point cloud:</strong>
         </div>
+    
         <div class="content has-text-justified">
-          Given feature layers from past frames, our method forecasts future 3D motion flow in two stages: 
-          (1) ego-motion forecasting using the EMF module, which processes the background (static category) across frames using inpainted feature layers $\mathcal{F}_{(t-1)}^{\overline{\text{BG}}}$ and $\mathcal{F}_{(t)}^{\overline{\text{BG}}}$, yielding two relative ego-pose transformations, $\mathcal{T}_{(t-1) \rightarrow (t+1)}$ and $\mathcal{T}_{(t) \rightarrow (t+1)}$. These transformations lead to initial 3D motion flows $\mathbf{u}^{0}_{(t-1) \rightarrow (t+1)}$ and $\mathbf{u}^{0}_{(t) \rightarrow (t+1)}$, referred to as $\mathbf{U}^{0}_{(t+1)}$. 
-          (2) The OMF module then refines the initial 3D motion flow $\mathbf{U}^{0}_{(t+1)}$ by accounting for foreground object motion, using original and inpainted feature layers to derive the final forecasted 3D motion flow, $\mathbf{U}^{L}_{(t+1)}$, after $L$ MMFB blocks.
+          (1) Estimate the depth map \( \mathbf{D} \) from the input image \( \mathbf{I} \).
+          <br>
+          (2) Address "holes" in future frames caused by dis-occlusions from dynamic object motion:
+          <br>
+          (i) Segment dynamic category (foreground) objects to produce a binary mask \( \mathbf{M} \), identifying potential regions for "holes".
+          <br>
+          (ii) Mask these foreground regions in both input image and depth map, then inpaint them using the background context.
+          <br>
+          (3) Extract features from both original and inpainted frames to produce \( \mathcal{F}_{(t)} \) and \( \mathcal{F}^{\overline{\text{BG}}}_{(t)} \).
+          <br>
+          (4) Create 3D point cloud \( \mathcal{P} \) by unprojecting the 2D features \( \mathcal{F}_{(t)} \) and \( \mathcal{F}^{\overline{\text{BG}}}_{(t)} \) into 3D, using depth maps \( \mathbf{D} \) and \( \mathbf{D}^{\overline{\text{BG}}} \), respectively. For simplicity, we refer to the set \( \{\mathcal{F}_{(t)}, \mathbf{D}, \mathbf{M}\} \) as \textit{original feature layer}, denoted by \( \mathcal{F} \), and the set \( \{\mathcal{F}^{\overline{\text{BG}}}_{(t)}, \mathbf{D}^{\overline{\text{BG}}}, \mathbf{M}\} \) as \textit{inpainted feature layer} \( \mathcal{F}^{\overline{\text{BG}}} \).
         </div>
+    
         <div class="content has-text-justified bold">
-          <strong>(c) Multi-scale motion flow block (MMFB).</strong> 
+          <strong>2. Forecasting future 3D motion:</strong>
         </div>
+    
         <div class="content has-text-justified">
-          We illustrate the design of a MMFB block here.
+          Given feature layers from past frames, our method forecasts future 3D motion flow in two stages:
+          <br>
+          (1) Ego-motion forecasting using the EMF module, which processes the background (static category) across frames using inpainted feature layers \( \mathcal{F}_{(t-1)}^{\overline{\text{BG}}} \) and \( \mathcal{F}_{(t)}^{\overline{\text{BG}}} \), yielding two relative ego-pose transformations, \( \mathcal{T}_{(t-1) \rightarrow (t+1)} \) and \( \mathcal{T}_{(t) \rightarrow (t+1)} \). These transformations lead to initial 3D motion flows \( \mathbf{u}^{0}_{(t-1) \rightarrow (t+1)} \) and \( \mathbf{u}^{0}_{(t) \rightarrow (t+1)} \), referred to as \( \mathbf{U}^{0}_{(t+1)} \).
+          <br>
+          (2) The OMF module then refines the initial 3D motion flow \( \mathbf{U}^{0}_{(t+1)} \) by accounting for foreground object motion, using original and inpainted feature layers to derive the final forecasted 3D motion flow, \( \mathbf{U}^{L}_{(t+1)} \), after \( L \) MMFB blocks.
+        </div>
+    
+        <div class="content has-text-justified bold">
+          <strong>3. Multi-scale motion flow block (MMFB):</strong>
+        </div>
+    
+        <div class="content has-text-justified">
+          We illustrate the design of an MMFB block here.
         </div>
       </div>
     </div>
+    
     
         
 
